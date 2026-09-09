@@ -190,6 +190,11 @@
   },
   "active": "674d388f8d586ceb",
   "lastOpenFiles": [
+    "blog/05-tailscale-subnet-router.md",
+    "blog/04-self-host-webapp.md",
+    "blog/03-pihole-on-proxmox.md",
+    "blog/02-m8-nic-speed-issue.md",
+    "blog/01-homeserver-overview.md",
     "blog/cloudflare.md",
     "blog/homeserver-build.md"
   ]
