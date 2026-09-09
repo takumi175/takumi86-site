@@ -1,0 +1,29 @@
+---
+title: "デスク環境を整えた"
+description: "作業机で使っているものを一通り並べた記録。買ってよかったもの、そうでもなかったもの。"
+pubDate: 2026-09-09
+heroImage: "../../assets/blog/desk.svg"
+tags: ["買い物", "デスク環境"]
+---
+
+import Gear from '../../components/Gear.astro';
+import { gear } from '../../data/gear';
+
+export const desk = gear.find((g) => g.category === 'デスク周り')?.items ?? [];
+
+大学2年の夏休みに引っ越しをして、そのタイミングでデスク周りを一通り揃えた。
+
+{/* TODO: どういう方針で選んだか。予算、優先したこと、譲れなかった条件など。2〜3段落 */}
+
+## 買ったもの
+
+{desk.map((item) => <Gear {...item} />)}
+
+{/* TODO: 上の各項目に、商品名・スペック・良かった点・誤算を追記する。
+     編集する場所は src/data/gear.ts。ここを埋めると /gear ページにも反映される。 */}
+
+## 使ってみて
+
+{/* TODO: 全体の感想。一番効果があったもの、要らなかったもの、次に買うなら何か */}
+
+機材の一覧は[使っているもの](/gear)にもまとめてある。

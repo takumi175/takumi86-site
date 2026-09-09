@@ -1,0 +1,64 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Gear from '../components/Gear.astro';
+import Header from '../components/Header.astro';
+import { gear } from '../data/gear';
+
+const title = '使っているもの';
+const description = '自宅サーバーやデスク周りで実際に使っている機材と、買ってみて分かったこと。';
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>使っているもの</h1>
+			<p class="lead">
+				実際に使っている機材です。スペックの一覧より、買ってから分かったことを中心に書いています。
+				良かった点だけでなく、誤算だった点も残しています。
+			</p>
+
+			{
+				gear.map((group) => (
+					<section class="group">
+						<h2>{group.category}</h2>
+						{group.description && <p class="g-desc">{group.description}</p>}
+						{group.items.map((item) => (
+							<Gear {...item} />
+						))}
+					</section>
+				))
+			}
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 860px;
+	}
+	h1 {
+		margin-bottom: 0.5rem;
+	}
+	.lead {
+		max-width: 34em;
+		margin-bottom: 3rem;
+	}
+	.group {
+		margin-bottom: 3rem;
+	}
+	.group h2 {
+		margin-bottom: 0.2rem;
+	}
+	.g-desc {
+		margin: 0 0 0.5rem;
+		font-size: 0.8em;
+		color: rgb(var(--gray));
+	}
+</style>
