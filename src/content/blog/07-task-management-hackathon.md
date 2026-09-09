@@ -2,6 +2,7 @@
 title: "チームでタスク管理アプリを作った — タスクを終わらせるとキャラが育つ"
 description: "6人のハッカソンで作った Vue + FastAPI のタスク管理アプリ。育成ゲーム要素の設計、通知を1回だけ出すための工夫、Cookie認証をやめた理由、そしてチーム開発で崩れたところ。"
 pubDate: 2026-09-09
+heroImage: "../../assets/blog/hero-task-management.svg"
 tags: ["Vue", "FastAPI", "PostgreSQL", "チーム開発", "ハッカソン"]
 ---
 
@@ -76,6 +77,8 @@ def grant_reward(user_id: int, reward_type: str, target_type: str = None):
 ```
 
 **これが効いたのはバランス調整のときだった。** ゲーム要素は「1タスク何EXPが気持ちいいか」を実際に触りながら決めるしかない。値をコードに書いていたら、調整のたびにコードを直してレビューを通してマージ、という手順を踏むことになる。SQLのUPDATE一発で変えられる形にしておいたおかげで、試行の回数を稼げた。
+
+![タスク完了から報酬付与、レベル判定、ステージ判定までの流れ](../../assets/blog/reward-flow.svg)
 
 チーム開発だと特に効く。値の調整とロジックの実装を、別の人が同時に進められる。
 

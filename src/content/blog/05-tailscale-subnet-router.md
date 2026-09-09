@@ -2,6 +2,7 @@
 title: "Tailscale のサブネットルーターで外出先から自宅サーバーに繋ぐ"
 description: "ポート開放なしで外出先から自宅LAN全体にアクセスする設定。Proxmox で ip_forward が 0 になっていてハマった話も含めて。"
 pubDate: 2026-08-29
+heroImage: "../../assets/blog/hero-tailscale.svg"
 tags: ["Tailscale", "Proxmox", "ネットワーク", "自宅サーバー"]
 ---
 
@@ -38,6 +39,8 @@ $ tailscale up
 - `http://192.168.11.102:3000` → Grafana。**届かない**
 
 後者が届かないのは、スマホが `192.168.11.102` への経路を知らないから。Tailscale は「M8 という1台」を繋いだだけで、その先の LAN までは面倒を見ない。
+
+![サブネットルーターの有無による到達範囲の違い](../../assets/blog/tailscale-subnet-router.svg)
 
 コンテナや VM が増えるたびに Tailscale を入れて回るのは現実的ではない。
 

@@ -2,6 +2,7 @@
 title: "GMKtec M8 のLANポートで速度が56倍違った話"
 description: "同じ本体に付いている2つの有線LANポートで、実効速度が43KB/s と 2.4MB/s。リンク速度はどちらも1000Mb/sなのに何が違ったのか、切り分けの記録。"
 pubDate: 2026-08-29
+heroImage: "../../assets/blog/nic-speed-comparison.svg"
 tags: ["ネットワーク", "Proxmox", "トラブルシューティング", "ミニPC"]
 ---
 

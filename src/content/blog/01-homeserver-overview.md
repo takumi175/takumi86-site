@@ -2,6 +2,7 @@
 title: "ミニPCで自宅サーバーを立てた"
 description: "GMKtec M8 に Proxmox VE を入れて、Pi-hole・監視基盤・自作アプリのホスティングまで一通り構築した記録。全体像と、そこに至るまでに踏んだ罠のまとめ。"
 pubDate: 2026-08-29
+heroImage: "../../assets/blog/homeserver-overview.svg"
 tags: ["Proxmox", "自宅サーバー", "ミニPC"]
 ---
 

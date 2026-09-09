@@ -2,6 +2,7 @@
 title: "Proxmox に Pi-hole を立てて家中の広告をブロックする"
 description: "LXCコンテナに Pi-hole を立てて、DNSレベルで家中の端末の広告をブロックする手順。仕組みの説明と、運用してみて分かったことも。"
 pubDate: 2026-08-29
+heroImage: "../../assets/blog/hero-pihole.svg"
 tags: ["Pi-hole", "Proxmox", "DNS", "自宅サーバー"]
 ---
 
@@ -17,6 +18,8 @@ tags: ["Pi-hole", "Proxmox", "DNS", "自宅サーバー"]
 - リストに**ある** → `0.0.0.0` を返す
 
 `0.0.0.0` は「どこでもない場所」なので、端末は広告サーバーに接続できない。結果として広告が表示されない。
+
+![Pi-hole が DNS 問い合わせを振り分ける流れ](../../assets/blog/pihole-dns-flow.svg)
 
 ### ブラウザ拡張との違い
 

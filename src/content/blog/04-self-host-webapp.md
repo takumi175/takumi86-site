@@ -2,6 +2,7 @@
 title: "自作アプリを Render から自宅サーバーに引っ越した"
 description: "React + Flask + PostgreSQL の3層構成を Docker Compose で自宅サーバーに載せた記録。Nginx をリバースプロキシに置いて CORS を消す構成と、DB初期化でハマった話。"
 pubDate: 2026-08-29
+heroImage: "../../assets/blog/hero-selfhost.svg"
 tags: ["Docker", "Nginx", "Flask", "自宅サーバー"]
 ---
 
@@ -34,6 +35,8 @@ Docker Compose で3コンテナにまとめた。
 ```
 
 **Nginx をリバースプロキシに置いたのがポイント。** `/` は React の画面、`/api` は Flask に振り分ける。この形にするとフロントと API が**同一オリジン**になるので、CORS の設定が要らなくなる。
+
+![Nginx をリバースプロキシに置いた構成](../../assets/blog/nginx-reverse-proxy.svg)
 
 Render では別ドメインだったので `FRONTEND_URL` を環境変数で渡して CORS を許可していたが、その仕組みごと不要になった。
 

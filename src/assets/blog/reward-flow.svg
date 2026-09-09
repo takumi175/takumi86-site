@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="タスク完了から報酬付与、レベル判定、ステージ判定までの流れ。報酬の値はrewardsテーブルから読み込む。">
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; }
+    .h1 { font-size: 17px; font-weight: 700; fill: #0f1219; }
+    .h2 { font-size: 14px; font-weight: 700; fill: #0f1219; }
+    .m  { font-size: 12px; fill: #6b7280; }
+    .cm { font-size: 12px; fill: #2337ff; font-weight: 700; font-family: ui-monospace, Consolas, monospace; }
+  </style>
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8b93a7"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="470" fill="#f7f8fc"/>
+
+  <text class="h1" x="50" y="52">タスクを1つ終わらせたときに起きること</text>
+
+  <rect x="50" y="86" width="180" height="64" rx="12" fill="#ffffff" stroke="#d5d9e6" stroke-width="1.5"/>
+  <text class="h2" x="140" y="114" text-anchor="middle">タスク完了</text>
+  <text class="m"  x="140" y="134" text-anchor="middle">チェックを入れる</text>
+  <line x1="232" y1="118" x2="288" y2="118" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="292" y="86" width="200" height="64" rx="12" fill="#ffffff" stroke="#2337ff" stroke-width="2"/>
+  <text class="cm" x="392" y="114" text-anchor="middle">grant_reward()</text>
+  <text class="m"  x="392" y="134" text-anchor="middle">報酬の付与</text>
+
+  <!-- rewards テーブル参照 -->
+  <line x1="392" y1="152" x2="392" y2="196" stroke="#8b93a7" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#g)"/>
+  <rect x="272" y="200" width="240" height="86" rx="12" fill="#f4f6ff" stroke="#ccd3f5"/>
+  <text class="cm" x="392" y="226" text-anchor="middle">rewards テーブル</text>
+  <text class="m"  x="392" y="248" text-anchor="middle">exp 10 / coin 5（タスク完了）</text>
+  <text class="m"  x="392" y="268" text-anchor="middle">値はSQLで変えられる</text>
+
+  <line x1="494" y1="118" x2="550" y2="118" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="554" y="86" width="200" height="64" rx="12" fill="#ffffff" stroke="#d5d9e6" stroke-width="1.5"/>
+  <text class="h2" x="654" y="114" text-anchor="middle">characters を更新</text>
+  <text class="m"  x="654" y="134" text-anchor="middle">累積 exp と coin を加算</text>
+  <line x1="756" y1="118" x2="812" y2="118" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="816" y="86" width="140" height="64" rx="12" fill="#ffffff" stroke="#d5d9e6" stroke-width="1.5"/>
+  <text class="h2" x="886" y="114" text-anchor="middle">レベル判定</text>
+  <text class="m"  x="886" y="134" text-anchor="middle">累積 exp と比較</text>
+
+  <path d="M886 152 C 886 200, 886 200, 780 200" fill="none" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="600" y="200" width="176" height="64" rx="12" fill="#ffffff" stroke="#d5d9e6" stroke-width="1.5"/>
+  <text class="h2" x="688" y="228" text-anchor="middle">ステージ判定</text>
+  <text class="m"  x="688" y="248" text-anchor="middle">レベルを見て決まる</text>
+
+  <!-- ステージ -->
+  <line x1="50" y1="322" x2="950" y2="322" stroke="#e2e5ee" stroke-width="1.5"/>
+  <text class="h2" x="50" y="352">ステージの変化</text>
+
+  <rect x="50" y="370" width="180" height="66" rx="12" fill="#ffffff" stroke="#d5d9e6" stroke-width="1.5"/>
+  <text class="h2" x="140" y="398" text-anchor="middle">egg</text>
+  <text class="m"  x="140" y="419" text-anchor="middle">レベル 1</text>
+  <line x1="238" y1="403" x2="294" y2="403" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="298" y="370" width="180" height="66" rx="12" fill="#f4f6ff" stroke="#ccd3f5"/>
+  <text class="h2" x="388" y="398" text-anchor="middle">baby</text>
+  <text class="m"  x="388" y="419" text-anchor="middle">レベル 2〜3</text>
+  <line x1="486" y1="403" x2="542" y2="403" stroke="#8b93a7" stroke-width="1.5" marker-end="url(#g)"/>
+
+  <rect x="546" y="370" width="180" height="66" rx="12" fill="#f2fbf5" stroke="#b8e2c8"/>
+  <text class="h2" x="636" y="398" text-anchor="middle">adult</text>
+  <text class="m"  x="636" y="419" text-anchor="middle">レベル 4 以上</text>
+
+  <text class="m" x="760" y="396">通知は last_notified_level と</text>
+  <text class="m" x="760" y="416">last_notified_stage で1回だけ</text>
+</svg>
