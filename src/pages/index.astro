@@ -1,8 +1,31 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const latest = posts.slice(0, 3);
+
+const topics = [
+	{
+		title: '自宅サーバー',
+		desc: 'ミニPCに Proxmox を入れて、DNS・監視・アプリのホスティングまで',
+	},
+	{
+		title: '個人開発',
+		desc: '中国語の学習アプリを作って、自宅サーバーに載せるまで',
+	},
+	{
+		title: 'チーム開発',
+		desc: '6人のハッカソンで学んだ、一人のときとの違い',
+	},
+];
 ---
 
 <!doctype html>
@@ -13,15 +36,235 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>Takumi's Blog</h1>
-			<p>
-				個人開発や日々の学習で調べたこと・作ったものを記録しています。
-				記事はAIで書いています。
-			</p>
-			<p>
-				記事は<a href="/blog">ブログ</a>に、自己紹介は<a href="/about">About</a>にあります。
-			</p>
+			<section class="hero">
+				<p class="eyebrow">Takumi / 情報工学部</p>
+				<h1>つくって、詰まって、書く。</h1>
+				<p class="lead">
+					個人開発や日々の学習で調べたこと・作ったものを記録しています。
+					手順そのものより、なぜそう決めたのかと、どこで詰まったのかを残すようにしています。
+				</p>
+				<div class="actions">
+					<a class="btn primary" href="/blog">記事を読む</a>
+					<a class="btn" href="/about">自己紹介</a>
+				</div>
+				<p class="note">記事はAIで書いています。</p>
+			</section>
+
+			<section>
+				<div class="sec-head">
+					<h2>最新の記事</h2>
+					<a class="more" href="/blog">すべて見る →</a>
+				</div>
+				<ul class="posts">
+					{
+						latest.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									{post.data.heroImage && (
+										<Image
+											class="thumb"
+											width={640}
+											height={320}
+											src={post.data.heroImage}
+											alt=""
+										/>
+									)}
+									<div class="body">
+										<p class="date">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+										<h3>{post.data.title}</h3>
+										<p class="desc">{post.data.description}</p>
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<section>
+				<h2>扱っていること</h2>
+				<ul class="topics">
+					{
+						topics.map((t) => (
+							<li>
+								<span class="t-title">{t.title}</span>
+								<span class="t-desc">{t.desc}</span>
+							</li>
+						))
+					}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		width: 900px;
+	}
+
+	/* ヒーロー */
+	.hero {
+		padding: 1rem 0 3.5rem;
+		border-bottom: 1px solid rgba(var(--gray-light), 1);
+		margin-bottom: 3rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.6rem;
+		font-size: 0.8em;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: var(--accent);
+	}
+	.hero h1 {
+		margin: 0 0 0.6rem;
+		font-size: 2.6em;
+		line-height: 1.25;
+	}
+	.lead {
+		margin: 0;
+		max-width: 34em;
+		color: rgb(var(--gray-dark));
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+		margin-top: 1.8rem;
+	}
+	.btn {
+		display: inline-block;
+		padding: 0.6rem 1.4rem;
+		border: 1px solid rgba(var(--gray-light), 1);
+		border-radius: 999px;
+		background: #fff;
+		color: rgb(var(--black));
+		font-size: 0.9em;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+	.btn:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.btn.primary {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+	.btn.primary:hover {
+		background: var(--accent-dark);
+		border-color: var(--accent-dark);
+		color: #fff;
+	}
+	.note {
+		margin: 1.4rem 0 0;
+		font-size: 0.78em;
+		color: rgb(var(--gray));
+	}
+
+	/* セクション見出し */
+	.sec-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	.sec-head h2 {
+		margin: 0;
+	}
+	.more {
+		font-size: 0.85em;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	/* 最新の記事 */
+	.posts {
+		list-style: none;
+		margin: 1.6rem 0 3.5rem;
+		padding: 0;
+		display: grid;
+		gap: 1.6rem;
+	}
+	.posts a {
+		display: grid;
+		grid-template-columns: 260px 1fr;
+		gap: 1.4rem;
+		align-items: start;
+		text-decoration: none;
+		color: inherit;
+	}
+	.thumb {
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+		border: 1px solid rgba(var(--gray-light), 1);
+		transition: border-color 0.2s ease;
+	}
+	.posts a:hover .thumb {
+		border-color: var(--accent);
+	}
+	.posts .date {
+		margin: 0 0 0.3rem;
+		font-size: 0.72em;
+		color: rgb(var(--gray));
+	}
+	.posts h3 {
+		margin: 0 0 0.5rem;
+		font-size: 1.1em;
+		line-height: 1.5;
+		color: rgb(var(--black));
+		transition: color 0.2s ease;
+	}
+	.posts a:hover h3 {
+		color: var(--accent);
+	}
+	.posts .desc {
+		margin: 0;
+		font-size: 0.8em;
+		line-height: 1.7;
+		color: rgb(var(--gray));
+	}
+
+	/* 扱っていること */
+	.topics {
+		list-style: none;
+		margin: 1.6rem 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.2rem;
+	}
+	.topics li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		padding-top: 0.9rem;
+		border-top: 3px solid var(--accent);
+	}
+	.t-title {
+		font-weight: 700;
+		color: rgb(var(--black));
+	}
+	.t-desc {
+		font-size: 0.8em;
+		line-height: 1.7;
+		color: rgb(var(--gray));
+	}
+
+	@media (max-width: 720px) {
+		.hero h1 {
+			font-size: 2em;
+		}
+		.posts a {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+		}
+	}
+</style>
