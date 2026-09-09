@@ -11,14 +11,10 @@
             "id": "674d388f8d586ceb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "blog/homeserver-build.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "homeserver-build"
+              "title": "新規タブ"
             }
           }
         ]
@@ -99,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "blog/homeserver-build.md",
+                "file": "blog/03-pihole-on-proxmox.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "blog/homeserver-build.md",
+                "file": "blog/03-pihole-on-proxmox.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "blog/homeserver-build.md",
+                "file": "blog/03-pihole-on-proxmox.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,12 +186,26 @@
   },
   "active": "674d388f8d586ceb",
   "lastOpenFiles": [
-    "blog/05-tailscale-subnet-router.md",
-    "blog/04-self-host-webapp.md",
+    "blog/sedBg29fU",
+    "blog/sedk69jaW",
+    "blog/sediJ6LZE",
+    "blog/sedtbTiY9",
+    "blog/sedbT3Ubg",
+    "blog/sedLLBtV2",
+    "blog/07-task-management-hackathon.md",
+    "blog/chinese-learning-app.md",
+    "blog/06-chinese-learning-app.md",
+    "blog/00-markdown-style-guide.md",
+    "blog/0markdown-style-guide.md",
+    "blog/markdown-style-guide.md",
+    "blog/基本情報技術者試験に合格した.md",
+    "blog/task-management-hackathon.md",
     "blog/03-pihole-on-proxmox.md",
-    "blog/02-m8-nic-speed-issue.md",
     "blog/01-homeserver-overview.md",
-    "blog/cloudflare.md",
-    "blog/homeserver-build.md"
+    "blog/02-m8-nic-speed-issue.md",
+    "blog/04-self-host-webapp.md",
+    "blog/05-tailscale-subnet-router.md",
+    "blog/homeserver-build.md",
+    "blog/cloudflare.md"
   ]
 }
