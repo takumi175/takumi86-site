@@ -55,6 +55,7 @@ export const gear: GearGroup[] = [
 					'2つある有線LANポートのうち片方の実効速度が極端に低かった',
 				],
 				post: { href: '/blog/01-homeserver-overview/', label: '構築の記録' },
+				url: 'https://www.amazon.co.jp/dp/B0GYWTMWVH',
 			},
 			{
 				name: 'Raspberry Pi 5',
@@ -69,21 +70,60 @@ export const gear: GearGroup[] = [
 		],
 	},
 	{
-		// name には ASIN を仮置きしている。商品名に置き換えて、
-		// spec / meta / pros / cons を埋めると記事と /gear の両方に反映される。
+		// 商品名は Amazon の商品ページから取得したもの。
+		// pros / cons は未記入。使ってみた感想を追記すると記事と /gear の両方に反映される。
 		category: 'デスク周り',
 		description: '作業机で使っているもの',
 		items: [
-			{ name: 'B07X5VJQ3D', url: 'https://www.amazon.co.jp/dp/B07X5VJQ3D' },
-			{ name: 'B0BJTSFN8Z', url: 'https://www.amazon.co.jp/dp/B0BJTSFN8Z' },
-			{ name: 'B0F4PDMS9G', url: 'https://www.amazon.co.jp/dp/B0F4PDMS9G' },
-			{ name: 'B0CKWT77XL', url: 'https://www.amazon.co.jp/dp/B0CKWT77XL' },
-			{ name: 'B0FDQK9T7D', url: 'https://www.amazon.co.jp/dp/B0FDQK9T7D' },
-			{ name: 'B0GYWTMWVH', url: 'https://www.amazon.co.jp/dp/B0GYWTMWVH' },
-			{ name: 'B0D9Y1J4NH', url: 'https://www.amazon.co.jp/dp/B0D9Y1J4NH' },
-			{ name: 'B07V1XJ56J', url: 'https://www.amazon.co.jp/dp/B07V1XJ56J' },
-			{ name: 'B08C37944Z', url: 'https://www.amazon.co.jp/dp/B08C37944Z' },
-			{ name: 'B07LH1ZDSL', url: 'https://www.amazon.co.jp/dp/B07LH1ZDSL' },
+			{
+				name: 'Dell E2425HSM',
+				spec: '23.8型 / 1920×1080 / HDMI・DisplayPort・VGA / スピーカー内蔵',
+				meta: [{ label: '用途', value: 'メインモニター' }],
+				url: 'https://www.amazon.co.jp/dp/B0F4PDMS9G',
+			},
+			{
+				name: 'ASUS VZ249HR',
+				spec: '23.8型 / Eye Care',
+				meta: [{ label: '用途', value: 'サブモニター' }],
+				url: 'https://www.amazon.co.jp/dp/B07LH1ZDSL',
+			},
+			{
+				name: 'ロジクール K250GR',
+				spec: 'Bluetooth ワイヤレスキーボード / テンキー付き / 日本語配列 / 耐水',
+				url: 'https://www.amazon.co.jp/dp/B0FDQK9T7D',
+			},
+			{
+				name: 'ロジクール M575SPd',
+				spec: '静音ワイヤレストラックボール',
+				url: 'https://www.amazon.co.jp/dp/B0D9Y1J4NH',
+			},
+			{
+				name: 'アイリスオーヤマ MNS-590',
+				spec: 'モニター台 幅59cm / キーボードを下に収納できる',
+				url: 'https://www.amazon.co.jp/dp/B08C37944Z',
+			},
+			{
+				name: 'アイリスオーヤマ NPS-SBK',
+				spec: 'ノートPCスタンド / 高さ・角度調整可 / 折り畳み式',
+				url: 'https://www.amazon.co.jp/dp/B0CKWT77XL',
+			},
+			{
+				name: 'Anker PowerExpand+ USB-C & HDMI 変換アダプター',
+				spec: '4K 60Hz 対応',
+				url: 'https://www.amazon.co.jp/dp/B07X5VJQ3D',
+			},
+			{
+				name: 'エレコム T-K6A-2630BK',
+				spec: '電源タップ 6個口 3m / 雷ガード / 個別スイッチ / ほこりシャッター',
+				url: 'https://www.amazon.co.jp/dp/B07V1XJ56J',
+			},
+			{
+				name: 'バッファロー WEX-5400AX6/N',
+				spec: 'Wi-Fi 6 中継機 / 4803 + 573Mbps / Easy Mesh 対応',
+				meta: [{ label: '備考', value: '自宅サーバーもこの中継機を経由して接続している' }],
+				post: { href: '/blog/02-m8-nic-speed-issue/', label: 'LAN速度の切り分け' },
+				url: 'https://www.amazon.co.jp/dp/B0BJTSFN8Z',
+			},
 		],
 	},
 ];
