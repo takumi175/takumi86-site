@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Obsidian の画面状態（開くたびに変わる）
+src/content/.obsidian/workspace.json
