@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import { amazonSearchUrl, type BookItem } from '../data/books';
+
+type Props = BookItem;
+
+const { title, author, publisher, image, readAt, why, review, recommend, post, url } = Astro.props;
+
+// 直リンクがあればそれを、なければ書名での検索リンクを使う
+const shopUrl = url ?? amazonSearchUrl(Astro.props);
+const shopLabel = url ? '販売ページ' : 'Amazonで探す';
+---
+
+<article class="book">
+	<div class="visual">
+		{
+			image ? (
+				<Image class="cover" src={image} alt={title} width={320} height={440} />
+			) : (
+				<div class="placeholder" aria-hidden="true">
+					<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z" />
+						<path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20" />
+					</svg>
+				</div>
+			)
+		}
+	</div>
+
+	<div class="body">
+		<h3>{title}</h3>
+		{
+			(author || publisher) && (
+				<p class="byline">
+					{author}
+					{author && publisher && <span class="sep">/</span>}
+					{publisher}
+				</p>
+			)
+		}
+		{readAt && <p class="read">読んだ時期：{readAt}</p>}
+
+		{
+			why && (
+				<p class="line">
+					<span class="label">読んだ理由</span>
+					{why}
+				</p>
+			)
+		}
+		{
+			review && (
+				<p class="line">
+					<span class="label">感想</span>
+					{review}
+				</p>
+			)
+		}
+		{
+			recommend && (
+				<p class="line">
+					<span class="label">向いている人</span>
+					{recommend}
+				</p>
+			)
+		}
+
+		<p class="links">
+			{post && <a href={post.href}>{post.label}</a>}
+			<a href={shopUrl} target="_blank" rel="noopener">{shopLabel}</a>
+		</p>
+	</div>
+</article>
+
+<style>
+	.book {
+		display: grid;
+		grid-template-columns: 130px 1fr;
+		gap: 1.6rem;
+		padding: 1.6rem 0;
+		border-top: 1px solid rgba(var(--gray-light), 1);
+	}
+
+	.cover {
+		width: 100%;
+		height: auto;
+		border-radius: 4px;
+		border: 1px solid rgba(var(--gray-light), 1);
+		box-shadow: 0 2px 8px rgba(var(--gray), 20%);
+	}
+	.placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 3 / 4;
+		border-radius: 4px;
+		border: 1px dashed rgba(var(--gray-light), 1);
+		background: rgba(var(--gray-light), 25%);
+		color: rgb(var(--gray));
+		opacity: 0.75;
+	}
+
+	.body h3 {
+		margin: 0 0 0.2rem;
+		font-size: 1.1em;
+		line-height: 1.5;
+	}
+	.byline {
+		margin: 0 0 0.2rem;
+		font-size: 0.78em;
+		color: rgb(var(--gray));
+	}
+	.sep {
+		margin: 0 0.4em;
+	}
+	.read {
+		margin: 0 0 0.9rem;
+		font-size: 0.72em;
+		color: rgb(var(--gray));
+	}
+
+	.line {
+		margin: 0 0 0.5rem;
+		font-size: 0.82em;
+		line-height: 1.75;
+	}
+	.label {
+		display: inline-block;
+		margin-right: 0.7em;
+		padding: 0.1em 0.6em;
+		border-radius: 999px;
+		background: #eef0ff;
+		color: var(--accent);
+		font-size: 0.85em;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	.links {
+		margin: 0.9rem 0 0;
+		font-size: 0.8em;
+	}
+	.links a + a {
+		margin-left: 1.2rem;
+	}
+
+	@media (max-width: 600px) {
+		.book {
+			grid-template-columns: 100px 1fr;
+			gap: 1.1rem;
+		}
+	}
+</style>
