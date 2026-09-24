@@ -8,6 +8,10 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
 	site: 'https://takumi86.dev',
 	integrations: [mdx(), sitemap()],
+	// About は Home に統合したので、旧URLは転送する
+	redirects: {
+		'/about': '/',
+	},
 	fonts: [
 		{
 			provider: fontProviders.local(),

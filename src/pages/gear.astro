@@ -1,12 +1,11 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import Gear from '../components/Gear.astro';
 import Header from '../components/Header.astro';
 import { gear } from '../data/gear';
 
 const title = '使っているもの';
-const description = '自宅サーバーやデスク周りで実際に使っている機材と、買ってみて分かったこと。';
+const description = '自宅サーバーやデスク周りで実際に使っている機材。';
 ---
 
 <!doctype html>
@@ -18,22 +17,22 @@ const description = '自宅サーバーやデスク周りで実際に使って�
 		<Header />
 		<main>
 			<h1>使っているもの</h1>
-			<p class="lead">
-				実際に使っている機材です。スペックの一覧より、買ってから分かったことを中心に書いています。
-				良かった点だけでなく、誤算だった点も残しています。
-			</p>
-
-			{
-				gear.map((group) => (
-					<section class="group">
-						<h2>{group.category}</h2>
-						{group.description && <p class="g-desc">{group.description}</p>}
-						{group.items.map((item) => (
-							<Gear {...item} />
-						))}
-					</section>
-				))
-			}
+			<ul class="compact">
+				{
+					gear.map((item) => (
+						<li>
+							{item.url ? (
+								<a class="c-title" href={item.url} target="_blank" rel="noopener">
+									{item.name}
+								</a>
+							) : (
+								<span class="c-title">{item.name}</span>
+							)}
+							{item.spec && <span class="c-spec">{item.spec}</span>}
+						</li>
+					))
+				}
+			</ul>
 		</main>
 		<Footer />
 	</body>
@@ -41,24 +40,46 @@ const description = '自宅サーバーやデスク周りで実際に使って�
 
 <style>
 	main {
-		width: 860px;
+		width: var(--list-width);
 	}
 	h1 {
-		margin-bottom: 0.5rem;
+		margin-bottom: 2rem;
 	}
-	.lead {
-		max-width: 34em;
-		margin-bottom: 3rem;
+
+	/* 本棚と同じコンパクト表示。スペックは名前の下に置く */
+	.compact {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		column-gap: 2.5rem;
 	}
-	.group {
-		margin-bottom: 3rem;
+	@media (min-width: 720px) {
+		.compact {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
-	.group h2 {
-		margin-bottom: 0.2rem;
+	.compact li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		margin: 0;
+		padding: 0.85rem 0;
+		border-bottom: 1px solid rgba(var(--gray-light), 1);
 	}
-	.g-desc {
-		margin: 0 0 0.5rem;
-		font-size: 0.8em;
+	.c-title {
+		font-size: 0.85em;
+		color: rgb(var(--black));
+		text-decoration: none;
+	}
+	a.c-title:hover {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+	.c-spec {
+		font-size: 0.72em;
+		line-height: 1.6;
 		color: rgb(var(--gray));
 	}
 </style>

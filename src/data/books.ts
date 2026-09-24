@@ -42,7 +42,6 @@ export function amazonSearchUrl(item: BookItem): string {
 
 export interface BookGroup {
 	category: string;
-	description?: string;
 	/** cards: 1冊ずつカード表示（コメントを書く本向け） / compact: 書名と著者だけの一覧 */
 	layout?: 'cards' | 'compact';
 	items: BookItem[];
@@ -51,8 +50,7 @@ export interface BookGroup {
 export const books: BookGroup[] = [
 	{
 		category: '技術書',
-		description: '作りながら読んだもの。why / review を埋めると詳しい紹介になる',
-		layout: 'cards',
+		layout: 'compact',
 		items: [
 			{ title: 'いちばんやさしいGit&GitHubの教本', author: '横田紋奈' },
 			{ title: 'モダンJavaScriptの基本から始める React実践の教科書', author: 'じゃけぇ（岡田拓巳）' },
@@ -62,39 +60,17 @@ export const books: BookGroup[] = [
 			{ title: '図解 Amazon Web Services の仕組みと技術がしっかりわかる教科書', author: 'NRIネットコム' },
 			{ title: 'Claude CodeによるAI駆動開発', author: '平川知秀' },
 			{ title: 'これからはじめるFigma Web・UIデザイン入門', author: '阿部文人' },
-			{
-				title: 'これ1冊でできる！ラズベリーパイ 超入門',
-				author: '福田和宏',
-				post: { href: '/blog/01-homeserver-overview/', label: 'ラズパイを使った構成' },
-			},
+			{ title: 'これ1冊でできる！ラズベリーパイ 超入門', author: '福田和宏' },
 			{ title: 'Jetson Nano 超入門 改訂第2版', author: 'Jetson Japan User Group' },
 			{ title: '[第3版] Python機械学習プログラミング', author: 'Sebastian Raschka' },
 			{ title: 'いきなりプログラミング Androidアプリ開発', author: 'Sara' },
 			{ title: 'スマホで動くアプリを作ろう！ Flutter実践', author: '渋谷エミリ' },
 			{ title: '10日でBlender練習帳', author: 'M design' },
-			{
-				title: 'PC自作の鉄則！2025',
-				author: '日経PC21',
-				post: { href: '/blog/01-homeserver-overview/', label: '自宅サーバーの構築' },
-			},
-		],
-	},
-	{
-		category: '大学の勉強',
-		layout: 'compact',
-		items: [{ title: '線型代数（改訂版）', author: '長谷川浩司' }],
-	},
-	{
-		category: '考え方',
-		layout: 'compact',
-		items: [
-			{ title: '問いのデザイン 創造的対話のファシリテーション', author: '安斎勇樹' },
-			{ title: 'ソクラテスの弁明', author: 'プラトン' },
+			{ title: 'PC自作の鉄則！2025', author: '日経PC21' },
 		],
 	},
 	{
 		category: '小説',
-		description: '息抜きに読んだもの',
 		layout: 'compact',
 		items: [
 			{ title: '成瀬は天下を取りにいく', author: '宮島未奈' },
@@ -107,6 +83,12 @@ export const books: BookGroup[] = [
 			{ title: 'そして、バトンは渡された', author: '瀬尾まいこ' },
 			{ title: 'かがみの孤城', author: '辻村深月' },
 			{ title: '六人の嘘つきな大学生', author: '浅倉秋成' },
+			{ title: 'イン・ザ・メガチャーチ', author: '朝井リョウ' },
+			{
+				title: '生殖記',
+				author: '朝井リョウ',
+				url: 'https://www.amazon.co.jp/dp/B0D86NGY6Q',
+			},
 			{ title: '正欲', author: '朝井リョウ' },
 			{ title: 'コンビニ人間', author: '村田沙耶香' },
 			{ title: '変な家', author: '雨穴' },
@@ -117,6 +99,15 @@ export const books: BookGroup[] = [
 			{ title: '告白', author: '湊かなえ' },
 			{ title: 'リバース', author: '湊かなえ' },
 			{ title: 'ノルウェイの森', author: '村上春樹' },
+		],
+	},
+	{
+		category: 'その他',
+		layout: 'compact',
+		items: [
+			{ title: '線型代数（改訂版）', author: '長谷川浩司' },
+			{ title: '問いのデザイン 創造的対話のファシリテーション', author: '安斎勇樹' },
+			{ title: 'ソクラテスの弁明', author: 'プラトン' },
 		],
 	},
 ];

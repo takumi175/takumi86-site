@@ -17,6 +17,8 @@
 
 	/* 本文の行長。日本語で1行40字前後になる幅 */
 	--content-width: 720px;
+	/* 一覧ページ（記事一覧・使っているもの・本棚）の幅 */
+	--list-width: 860px;
 
 	--font-sans:
 		var(--font-atkinson), 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP',

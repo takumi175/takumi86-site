@@ -63,13 +63,13 @@ const posts = (await getCollection('blog')).sort(
 
 <style>
 	main {
-		width: 900px;
+		width: var(--list-width);
 	}
 	h1 {
 		margin-bottom: 0.3rem;
 	}
 	.lead {
-		margin-bottom: 3rem;
+		margin-bottom: 2.5rem;
 		font-size: 0.85em;
 		color: rgb(var(--gray));
 	}

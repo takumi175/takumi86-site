@@ -1,163 +1,63 @@
 ---
-import { Image } from 'astro:assets';
 import type { GearItem } from '../data/gear';
 
 type Props = GearItem;
 
-const { name, spec, image, meta, pros, cons, post, url } = Astro.props;
+const { name, spec, post, url } = Astro.props;
 ---
 
 <article class="gear">
-	<div class="visual">
-		{
-			image ? (
-				<Image class="photo" src={image} alt={name} width={520} height={390} />
-			) : (
-				<div class="placeholder" aria-hidden="true">
-					<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-						<path d="M3 7h3l2-2h8l2 2h3v12H3z" />
-						<circle cx="12" cy="13" r="3.5" />
-					</svg>
-				</div>
-			)
-		}
-	</div>
-
 	<div class="body">
-		<h3>{name}</h3>
+		<h2>{name}</h2>
 		{spec && <p class="spec">{spec}</p>}
-
-		{
-			meta && meta.length > 0 && (
-				<dl class="meta">
-					{meta.map((m) => (
-						<>
-							<dt>{m.label}</dt>
-							<dd>{m.value}</dd>
-						</>
-					))}
-				</dl>
-			)
-		}
-
-		{
-			pros && pros.length > 0 && (
-				<ul class="judge good">
-					{pros.map((p) => (
-						<li>{p}</li>
-					))}
-				</ul>
-			)
-		}
-
-		{
-			cons && cons.length > 0 && (
-				<ul class="judge bad">
-					{cons.map((c) => (
-						<li>{c}</li>
-					))}
-				</ul>
-			)
-		}
-
-		{
-			(post || url) && (
-				<p class="links">
-					{post && <a href={post.href}>{post.label}</a>}
-					{url && (
-						<a href={url} target="_blank" rel="noopener">
-							販売ページ
-						</a>
-					)}
-				</p>
-			)
-		}
 	</div>
+
+	{
+		(post || url) && (
+			<p class="links">
+				{post && <a href={post.href}>{post.label}</a>}
+				{url && (
+					<a href={url} target="_blank" rel="noopener">
+						販売ページ
+					</a>
+				)}
+			</p>
+		)
+	}
 </article>
 
 <style>
 	.gear {
-		display: grid;
-		grid-template-columns: 200px 1fr;
-		gap: 1.6rem;
-		padding: 1.6rem 0;
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 1.1rem 0;
 		border-top: 1px solid rgba(var(--gray-light), 1);
 	}
 
-	/* 写真 / プレースホルダー */
-	.photo {
-		width: 100%;
-		height: auto;
-		border-radius: 10px;
-		border: 1px solid rgba(var(--gray-light), 1);
+	.body {
+		flex: 1;
+		min-width: 0;
 	}
-	.placeholder {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		aspect-ratio: 4 / 3;
-		border-radius: 10px;
-		border: 1px dashed rgba(var(--gray-light), 1);
-		background: rgba(var(--gray-light), 25%);
-		color: rgb(var(--gray));
-		opacity: 0.75;
-	}
-
-	.body h3 {
+	.body h2 {
 		margin: 0 0 0.2rem;
-		font-size: 1.15em;
+		padding: 0;
+		border: none;
+		font-size: 1em;
+		line-height: 1.5;
 	}
 	.spec {
-		margin: 0 0 0.9rem;
-		font-size: 0.78em;
-		color: rgb(var(--gray));
-	}
-
-	/* 項目表 */
-	.meta {
-		display: grid;
-		grid-template-columns: max-content 1fr;
-		gap: 0.25rem 1rem;
-		margin: 0 0 1rem;
-		font-size: 0.78em;
-	}
-	.meta dt {
-		color: rgb(var(--gray));
-	}
-	.meta dd {
 		margin: 0;
-	}
-
-	/* 良かった点 / 誤算 */
-	.judge {
-		list-style: none;
-		margin: 0 0 0.7rem;
-		padding: 0;
-		font-size: 0.82em;
+		font-size: 0.8em;
 		line-height: 1.7;
-	}
-	.judge li {
-		position: relative;
-		padding-left: 1.5rem;
-		margin-bottom: 0.3rem;
-	}
-	.judge li::before {
-		position: absolute;
-		left: 0;
-		font-weight: 700;
-	}
-	.good li::before {
-		content: '○';
-		color: #2f9e5e;
-	}
-	.bad li::before {
-		content: '×';
-		color: #e5484d;
+		color: rgb(var(--gray));
 	}
 
 	.links {
-		margin: 0.9rem 0 0;
-		font-size: 0.8em;
+		margin: 0;
+		font-size: 0.78em;
+		white-space: nowrap;
 	}
 	.links a + a {
 		margin-left: 1.2rem;
@@ -165,11 +65,8 @@ const { name, spec, image, meta, pros, cons, post, url } = Astro.props;
 
 	@media (max-width: 600px) {
 		.gear {
-			grid-template-columns: 1fr;
-			gap: 1rem;
-		}
-		.placeholder {
-			aspect-ratio: 16 / 9;
+			flex-direction: column;
+			gap: 0.5rem;
 		}
 	}
 </style>

@@ -19,10 +19,6 @@ const total = books.reduce((n, g) => n + g.items.length, 0);
 		<Header />
 		<main>
 			<h1>本棚</h1>
-			<p class="lead">
-				手元にある本の一覧です。要約ではなく、なぜ読んだか・読んで何が変わったかを残しています。
-			</p>
-
 			{
 				total === 0 ? (
 					<p class="empty">まだ登録がありません。</p>
@@ -30,7 +26,6 @@ const total = books.reduce((n, g) => n + g.items.length, 0);
 					books.map((group) => (
 						<section class="group">
 							<h2>{group.category}</h2>
-							{group.description && <p class="g-desc">{group.description}</p>}
 							{group.layout === 'compact' ? (
 								<ul class="compact">
 									{group.items.map((item) => (
@@ -61,25 +56,16 @@ const total = books.reduce((n, g) => n + g.items.length, 0);
 
 <style>
 	main {
-		width: 860px;
+		width: var(--list-width);
 	}
 	h1 {
-		margin-bottom: 0.5rem;
-	}
-	.lead {
-		max-width: 34em;
-		margin-bottom: 3rem;
+		margin-bottom: 2rem;
 	}
 	.group {
-		margin-bottom: 3rem;
+		margin-bottom: 2.5rem;
 	}
 	.group h2 {
-		margin-bottom: 0.2rem;
-	}
-	.g-desc {
-		margin: 0 0 0.5rem;
-		font-size: 0.8em;
-		color: rgb(var(--gray));
+		margin-bottom: 0;
 	}
 	.empty {
 		padding: 3rem 0;
@@ -106,7 +92,8 @@ const total = books.reduce((n, g) => n + g.items.length, 0);
 		align-items: baseline;
 		justify-content: space-between;
 		gap: 1rem;
-		padding: 0.7rem 0.2rem;
+		margin: 0;
+		padding: 0.85rem 0;
 		border-bottom: 1px solid rgba(var(--gray-light), 1);
 	}
 	.c-title {
