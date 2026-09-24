@@ -1,47 +1,28 @@
 ---
 title: "ミニPCで自宅サーバーを立てた"
-description: "GMKtec M8 に Proxmox VE を入れて、Pi-hole・監視基盤・自作アプリのホスティングまで一通り構築した記録。全体像と、そこに至るまでに踏んだ罠のまとめ。"
+description: "GMKtec M8 に Proxmox VE を入れて、Pi-hole・監視基盤・自作アプリのホスティングまで一通り構築した記録。"
 pubDate: 2026-08-29
 heroImage: "../../assets/blog/homeserver-overview.svg"
 tags: ["Proxmox", "自宅サーバー", "ミニPC"]
 ---
 
-ミニPCを買って自宅サーバーを立てた。二日かけて、仮想化基盤・DNSサーバー・監視ダッシュボード・自作アプリのホスティングまで動くところまで持っていった。
+## 使ったもの
 
-この記事は全体像のまとめで、個別の手順やハマりどころは別記事に分けている。
+- GMKtec M8。AMD Ryzen 5 PRO 6650H、メモリ16GB、SSD 512GB。
+- USB キーボード
+- USB マウス
+- モニター
+- LANケーブル
+- 中継器
 
-## 買ったもの
 
-GMKtec M8。AMD Ryzen 5 PRO 6650H、メモリ16GB、SSD 512GB。
+![画像の説明](../../assets/blog/homeserver-overview.svg)
 
-中古のノートPCを流用する手もあったが、24時間動かすなら消費電力と静音性を優先したかった。実測でアイドル時 15〜20W 程度、月の電気代にすると150円ほど。
-
-一つ誤算があった。**メモリが LPDDR5 の基板直付けで増設できない。** 商品ページには「DDR5 16GB」としか書かれておらず、後から足せるものだと思い込んでいた。BIOS 画面の `LPDDR5` という表記を見て気づいた。
-
-これは後の設計に効いてくる。ファイルシステムに ZFS を選ばなかったのは、ARC がメモリを大きく使うからだ。16GB 固定なら ext4 の方が安全だった。
-
-## 何を載せたか
-
-```
-M8 (Proxmox VE 9.2.2)  192.168.11.100
- ├ CT100 pihole    .101   DNS広告ブロック
- ├ CT102 metrics   .102   InfluxDB + Grafana
- ├ CT103 monitor   .103   Uptime Kuma
- └ VM101 ubuntu    .15    開発環境 + 中国語アプリ
-
-Raspberry Pi 5     .14    Obsidian同期 (CouchDB)
-
-外出先 ── Tailscale ── 全体
-毎週日曜3時 ── 自動バックアップ 3世代
-```
-
-ラズパイは以前から Obsidian の同期サーバーとして動いていた。今回 Telegraf を入れて、監視ダッシュボードに統合した。
+仮想化基盤・DNSサーバー・監視ダッシュボード・自作アプリのホスティングなどをした。
 
 ### Pi-hole
 
-DNS レベルで広告をブロックする。LXC コンテナに 512MB 割り当てれば動く。
-
-ブラウザ拡張と違って**家中の全端末に効く。** スマートテレビやスマホアプリの広告にも作用する。
+広告をなくす
 
 → [Proxmox に Pi-hole を立てる](/posts/pihole-on-proxmox)
 

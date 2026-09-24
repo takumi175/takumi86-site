@@ -13,102 +13,144 @@ const posts = (await getCollection('blog')).sort(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead title={`記事一覧 | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
+			<h1>記事一覧</h1>
+			<p class="lead">{posts.length} 件の記事があります。</p>
+
+			<ul class="posts">
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								{post.data.heroImage && (
+									<Image
+										class="thumb"
+										width={640}
+										height={320}
+										src={post.data.heroImage}
+										alt=""
+									/>
+								)}
+								<div class="body">
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+									<h2 class="title">{post.data.title}</h2>
+									<p class="desc">{post.data.description}</p>
+									{post.data.tags && post.data.tags.length > 0 && (
+										<p class="tags">
+											{post.data.tags.map((t: string) => (
+												<span class="tag">{t}</span>
+											))}
+										</p>
+									)}
+								</div>
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	main {
+		width: 900px;
+	}
+	h1 {
+		margin-bottom: 0.3rem;
+	}
+	.lead {
+		margin-bottom: 3rem;
+		font-size: 0.85em;
+		color: rgb(var(--gray));
+	}
+
+	.posts {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0;
+	}
+	.posts li {
+		margin: 0;
+		border-top: 1px solid rgba(var(--gray-light), 1);
+	}
+	.posts li:last-child {
+		border-bottom: 1px solid rgba(var(--gray-light), 1);
+	}
+	.posts a {
+		display: grid;
+		grid-template-columns: 240px 1fr;
+		gap: 1.6rem;
+		align-items: start;
+		padding: 1.8rem 0;
+		text-decoration: none;
+		color: inherit;
+	}
+	.thumb {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		border: 1px solid rgba(var(--gray-light), 1);
+		transition: border-color 0.2s ease;
+	}
+	.posts a:hover .thumb {
+		border-color: var(--accent);
+	}
+	.date {
+		margin: 0 0 0.4rem;
+		font-size: 0.72em;
+		letter-spacing: 0.06em;
+		color: rgb(var(--gray));
+	}
+	.title {
+		margin: 0 0 0.6rem;
+		padding: 0;
+		border: none;
+		font-size: 1.15em;
+		line-height: 1.55;
+		color: rgb(var(--black));
+		transition: color 0.2s ease;
+	}
+	.posts a:hover .title {
+		color: var(--accent);
+	}
+	.desc {
+		margin: 0;
+		font-size: 0.82em;
+		line-height: 1.8;
+		color: rgb(var(--gray));
+	}
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin: 0.8rem 0 0;
+	}
+	.tag {
+		font-size: 0.68em;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		color: var(--accent);
+		background: #eef0ff;
+		padding: 0.25em 0.7em;
+		border-radius: 999px;
+	}
+
+	@media (max-width: 720px) {
+		.posts a {
+			grid-template-columns: 1fr;
+			gap: 0.9rem;
+		}
+	}
+</style>
