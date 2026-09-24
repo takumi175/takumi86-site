@@ -58,15 +58,8 @@ export const books: BookGroup[] = [
 			{ title: 'SQL 第2版 ゼロからはじめるデータベース操作', author: 'ミック' },
 			{ title: '単体テストの考え方/使い方', author: 'Vladimir Khorikov' },
 			{ title: '図解 Amazon Web Services の仕組みと技術がしっかりわかる教科書', author: 'NRIネットコム' },
-			{ title: 'Claude CodeによるAI駆動開発', author: '平川知秀' },
 			{ title: 'これからはじめるFigma Web・UIデザイン入門', author: '阿部文人' },
 			{ title: 'これ1冊でできる！ラズベリーパイ 超入門', author: '福田和宏' },
-			{ title: 'Jetson Nano 超入門 改訂第2版', author: 'Jetson Japan User Group' },
-			{ title: '[第3版] Python機械学習プログラミング', author: 'Sebastian Raschka' },
-			{ title: 'いきなりプログラミング Androidアプリ開発', author: 'Sara' },
-			{ title: 'スマホで動くアプリを作ろう！ Flutter実践', author: '渋谷エミリ' },
-			{ title: '10日でBlender練習帳', author: 'M design' },
-			{ title: 'PC自作の鉄則！2025', author: '日経PC21' },
 		],
 	},
 	{
@@ -99,15 +92,6 @@ export const books: BookGroup[] = [
 			{ title: '告白', author: '湊かなえ' },
 			{ title: 'リバース', author: '湊かなえ' },
 			{ title: 'ノルウェイの森', author: '村上春樹' },
-		],
-	},
-	{
-		category: 'その他',
-		layout: 'compact',
-		items: [
-			{ title: '線型代数（改訂版）', author: '長谷川浩司' },
-			{ title: '問いのデザイン 創造的対話のファシリテーション', author: '安斎勇樹' },
-			{ title: 'ソクラテスの弁明', author: 'プラトン' },
 		],
 	},
 ];

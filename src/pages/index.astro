@@ -12,17 +12,17 @@ const timeline = [
 	{
 		period: '大学1年',
 		items: [
-			'<strong>前期</strong> — 情報系サークルに入り、新入生ハッカソンで Web 開発の基礎を学ぶ',
-			'<strong>夏休み</strong> — 合宿のハッカソンで、AI を使いながら中国語単語アプリを作る',
-			'<strong>後期</strong> — 大学のハッカソンで、チームでタスク管理アプリを開発',
-			'<strong>春休み</strong> — バイトを始める。Raspberry Pi を購入。Claude を使い始める。技育祭にオンライン参加。基本情報技術者試験に合格',
+			'<strong>前期</strong> — 情報系サークルに入り、新入生ハッカソンでブックマーク管理Webアプリを作る',
+			'<strong>夏休み</strong> — 合宿のハッカソンで中国語単語Webアプリを作る',
+			'<strong>後期</strong> — 大学のハッカソンで、チームでタスク管理Webアプリを開発',
+			'<strong>春休み</strong> — バイトを始める。Raspberry Pi を購入。Claude Pro を契約。技育祭にオンライン参加。基本情報技術者試験に合格',
 		],
 	},
 	{
 		period: '大学2年',
 		items: [
-			'<strong>前期</strong> — 実験レポートを LaTeX で書くようになる',
-			'<strong>夏休み</strong> — TOEIC 受験、引っ越し、自宅サーバーの構築、アプリ開発、デスク環境の整備',
+			'<strong>前期</strong> — LaTeX で実験レポートを書く',
+			'<strong>夏休み</strong> — TOEIC 初受験、引っ越し、自宅サーバーの構築、アプリ開発、デスク環境の整備',
 		],
 	},
 ];
@@ -36,6 +36,16 @@ const timeline = [
 	<body>
 		<Header />
 		<main>
+			<section class="intro">
+				<h1>Takumi</h1>
+				<p class="eyebrow">情報工学部 / 学部2年</p>
+				<p class="lead">
+					AIを使ってWebアプリを作ったり、自宅サーバーを立てたりしています。
+					作ったものの記録は<a href="/blog">ブログ</a>に、ほかに<a href="/gear">使っているもの</a>と<a href="/books">読んだ本</a>のページがあります。
+					このサイトは記事も含め、AIを使って作っています。
+				</p>
+			</section>
+
 			<section>
 				<h2>これまで</h2>
 				{
@@ -56,6 +66,7 @@ const timeline = [
 				<h2>資格・試験</h2>
 				<ul class="plain">
 					<li>基本情報技術者試験 合格</li>
+					<li>TOEIC 555点（1回目）</li>
 				</ul>
 			</section>
 
@@ -92,6 +103,29 @@ const timeline = [
 		width: var(--list-width);
 	}
 
+	/* 冒頭のプロフィール */
+	.intro {
+		padding-bottom: 2.5rem;
+		border-bottom: 1px solid rgba(var(--gray-light), 1);
+	}
+	.eyebrow {
+		margin: 0 0 0.8rem;
+		font-size: 0.8em;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		color: rgb(var(--gray));
+	}
+	.intro h1 {
+		margin: 0 0 0.3rem;
+	}
+	.lead {
+		margin: 0;
+		max-width: 32em;
+	}
+	.lead a {
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
 	/* 年表 */
 	.tl-group {
 		margin-bottom: 1.8rem;

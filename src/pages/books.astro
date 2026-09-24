@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { amazonSearchUrl, books } from '../data/books';
 
-const title = '本棚';
-const description = '持っている本と、読んで何を得たかの記録。';
+const title = '読んだ本';
+const description = '読んだ本の記録。';
 const total = books.reduce((n, g) => n + g.items.length, 0);
 ---
 
@@ -18,7 +18,7 @@ const total = books.reduce((n, g) => n + g.items.length, 0);
 	<body>
 		<Header />
 		<main>
-			<h1>本棚</h1>
+			<h1>読んだ本</h1>
 			{
 				total === 0 ? (
 					<p class="empty">まだ登録がありません。</p>

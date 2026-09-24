@@ -17,7 +17,8 @@ export const gear: GearItem[] = [
 	},
 	{
 		name: 'Raspberry Pi 5',
-		spec: 'Obsidian の同期サーバー（CouchDB）',
+		spec: '4GB / スターターキット 5点セット',
+		url: 'https://raspberry-pi.ksyic.com/main/index/pdp.id/1112',
 	},
 	{
 		name: 'Dell E2425HSM',
