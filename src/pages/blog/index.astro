@@ -29,13 +29,7 @@ const posts = (await getCollection('blog')).sort(
 						<li>
 							<a href={`/blog/${post.id}/`}>
 								{post.data.heroImage && (
-									<Image
-										class="thumb"
-										width={640}
-										height={320}
-										src={post.data.heroImage}
-										alt=""
-									/>
+									<Image class="thumb" width={640} src={post.data.heroImage} alt="" />
 								)}
 								<div class="body">
 									<p class="date">
@@ -99,7 +93,8 @@ const posts = (await getCollection('blog')).sort(
 	}
 	.thumb {
 		width: 100%;
-		height: auto;
+		aspect-ratio: 2 / 1;
+		object-fit: cover;
 		border-radius: 8px;
 		border: 1px solid rgba(var(--gray-light), 1);
 		transition: border-color 0.2s ease;

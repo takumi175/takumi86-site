@@ -56,7 +56,6 @@ export const books: BookGroup[] = [
 			{ title: 'モダンJavaScriptの基本から始める React実践の教科書', author: 'じゃけぇ（岡田拓巳）' },
 			{ title: '1冊ですべて身につくHTML & CSSとWebデザイン入門講座', author: 'Mana' },
 			{ title: 'SQL 第2版 ゼロからはじめるデータベース操作', author: 'ミック' },
-			{ title: '単体テストの考え方/使い方', author: 'Vladimir Khorikov' },
 			{ title: '図解 Amazon Web Services の仕組みと技術がしっかりわかる教科書', author: 'NRIネットコム' },
 			{ title: 'これからはじめるFigma Web・UIデザイン入門', author: '阿部文人' },
 			{ title: 'これ1冊でできる！ラズベリーパイ 超入門', author: '福田和宏' },

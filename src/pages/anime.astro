@@ -1,0 +1,86 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { anime } from '../data/anime';
+
+const title = '見たアニメ';
+const description = '見たアニメの記録。';
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>見たアニメ</h1>
+			<ul class="compact">
+				{
+					anime.map((item) => (
+						<li>
+							{item.url ? (
+								<a class="c-title" href={item.url} target="_blank" rel="noopener">
+									{item.title}
+								</a>
+							) : (
+								<span class="c-title">{item.title}</span>
+							)}
+							{item.note && <span class="c-note">{item.note}</span>}
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: var(--list-width);
+	}
+	h1 {
+		margin-bottom: 2rem;
+	}
+
+	/* 読んだ本と同じコンパクト表示 */
+	.compact {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		column-gap: 2.5rem;
+	}
+	@media (min-width: 720px) {
+		.compact {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.compact li {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		margin: 0;
+		padding: 0.85rem 0;
+		border-bottom: 1px solid rgba(var(--gray-light), 1);
+	}
+	.c-title {
+		font-size: 0.85em;
+		color: rgb(var(--black));
+		text-decoration: none;
+	}
+	a.c-title:hover {
+		color: var(--accent);
+		text-decoration: underline;
+	}
+	.c-note {
+		font-size: 0.72em;
+		color: rgb(var(--gray));
+		white-space: nowrap;
+	}
+</style>
